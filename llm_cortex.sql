@@ -3,11 +3,11 @@ USE SCHEMA PUBLIC;
 
 SELECT * FROM SUPPORT_TRANSCRIPTS limit 10;
 
-select transcript, snowflake.cortex.sentiment(transcript) 
-from SUPPORT_TRANSCRIPTS;
+select transcript, snowflake.cortex.sentiment(???) 
+from ???;
 
-select transcript,snowflake.cortex.summarize(transcript) 
-from SUPPORT_TRANSCRIPTS;
+select transcript,snowflake.cortex.summarize(???) 
+from ???;
 
 SET prompt = 
 '### 
