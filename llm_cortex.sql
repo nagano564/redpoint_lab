@@ -1,0 +1,31 @@
+USE DATABASE HOL;
+USE SCHEMA PUBLIC;
+
+SELECT * FROM SUPPORT_TRANSCRIPTS limit 10;
+
+select transcript, snowflake.cortex.sentiment(transcript) 
+from SUPPORT_TRANSCRIPTS;
+
+select transcript,snowflake.cortex.summarize(transcript) 
+from SUPPORT_TRANSCRIPTS;
+
+SET prompt = 
+'### 
+Summarize this transcript in less than 200 words. 
+Put the company name, experience and summary in JSON format. 
+###';
+
+select snowflake.cortex.complete('llama2-70b-chat',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from SUPPORT_TRANSCRIPTS ;
+
+select snowflake.cortex.complete('mixtral-8x7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from SUPPORT_TRANSCRIPTS ;
+
+select snowflake.cortex.complete('mistral-7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from SUPPORT_TRANSCRIPTS ;
+
+select snowflake.cortex.complete('gemma-7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from SUPPORT_TRANSCRIPTS ;
+
+select snowflake.cortex.complete('gemma-7b',concat('[INST]',$prompt,transcript,'[/INST]')) as summary
+from SUPPORT_TRANSCRIPTS ;
